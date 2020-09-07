@@ -5,13 +5,11 @@ export function mailService(url: string, bodyData: any): Observable<any>{
   return new Observable(observer => {
     fetch(url,
       {
-        method: 'PUT',
+        method: 'POST',
         body: JSON.stringify(bodyData),
         headers: {
-          'Access-Control-Allow-Headers' : 'Content-Type',
-          'Access-Control-Allow-Origin': 'http://localhost:4200',
-          'Access-Control-Allow-Methods': 'OPTIONS,POST,GET',
-          'Access-Control-Allow-Credentials': 'true'
+          'Content-Type': 'application/json',
+          'Access-Control-Allow-Origin': '*',
           // 'Content-Type': 'application/json',
           // 'Access-Control-Allow-Origin': '*',
           // 'Access-Control-Allow-Methods': 'POST, PUT',

@@ -10,6 +10,7 @@ import {MatInputModule} from '@angular/material/input';
 import {FlexModule} from '@angular/flex-layout';
 import {FormsModule} from '@angular/forms';
 import { MailListComponent } from './components/mail-list/mail-list.component';
+import {MatCardModule} from "@angular/material/card";
 
 @NgModule({
   declarations: [
@@ -24,7 +25,8 @@ import { MailListComponent } from './components/mail-list/mail-list.component';
     MatInputModule,
     MatIconModule,
     FlexModule,
-    FormsModule
+    FormsModule,
+    MatCardModule
   ],
   providers: [],
   bootstrap: [AppComponent]

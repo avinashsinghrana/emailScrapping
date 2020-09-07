@@ -12,7 +12,8 @@ import {Observable} from 'rxjs';
 })
 export class MailListComponent implements OnInit {
   selectedMessage: Message;
-  messages: Message[] = [];
+  messages = [];
+  subject = [];
   res$: Observable<any>;
   constructor(private dataService: DataServiceService,
               ) {
@@ -22,7 +23,6 @@ export class MailListComponent implements OnInit {
   ngOnInit(): void {
     console.log(this.messages);
     this.dataService.changeMailObserver$.subscribe(response => {
-      this.messages = [];
       const loginData = response;
       console.log('mail ngcall from data source', loginData);
       this.getMails(loginData);
@@ -35,12 +35,18 @@ export class MailListComponent implements OnInit {
   }
 
   getMails(login: LoginModel): void {
-    console.log('inside mailList function', login);
     this.res$ = mailService('http://localhost:8080/e/req_id', login);
     this.res$.subscribe(res => {
-        this.messages = res.object;
-        console.log('messages on mail list', this.messages);
-        console.log('logon Details on Mila lists', login);
+        const currentMessage: Message[] = res.object;
+        this.assign(currentMessage);
       });
+  }
+
+  assign(messages): void {
+    this.subject = [];
+    this.messages = messages;
+    messages.forEach(messageData => {
+      this.subject.push(messageData.subject);
+    });
   }
 }

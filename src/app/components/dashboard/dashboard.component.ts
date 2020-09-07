@@ -9,9 +9,9 @@ import {DataServiceService} from '../../service/data-service.service';
 })
 export class DashboardComponent implements OnInit {
   hide = true;
-  emailId: string = 'noreplytokenid@gmail.com';
-  password: string = 'Noreply@123';
-  duration: number = 500;
+  emailId = 'noreplytokenid@gmail.com';
+  password = 'Noreply@123';
+  duration = 500;
   isLogin = false;
 
   constructor(
@@ -26,9 +26,6 @@ export class DashboardComponent implements OnInit {
     login.user = this.emailId;
     login.password = this.password;
     login.hours = this.duration;
-    console.log('login details on dashboard', login);
-    sessionStorage.setItem('login_D', JSON.stringify(login));
-    console.log('session data', sessionStorage.getItem('login_D'));
     this.dataService.changeMail(login);
     this.isLogin = true;
   }

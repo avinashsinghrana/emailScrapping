@@ -3,15 +3,24 @@
     <div class="subjectList">
       <p style="text-align-last: center;color: white">Email List</p>
     </div>
+    <div>
+      <mat-card class="searchBar" fxLayoutAlign="row">
+        <mat-icon matPrefix >search</mat-icon>
+        <input matInput type="text" placeholder="Search your mail..." aria-label="Search" >
+      </mat-card>
+    </div>
+    <hr>
     <div style="overflow-y: scroll;
     width: 511px;
-    height: 537px;
-    margin-top: -7px">
-      <div *ngFor="let _message of messages; let i = index">
-        <p style="margin-left: 10px;
-       font-family: 'Lato Black';cursor: pointer;
+    height: 497px;
+    margin-top: -8px">
+      <div *ngFor="let message of subject; let i = index">
+        <mat-card class="matcardsubject" style="
+       cursor: pointer;
 "
-           (click)="selectMessage(i)">{{_message.subject}} asr</p>
+           (click)="selectMessage(i)">
+          <div class="input-price-span">{{message}}</div>
+        </mat-card>
         <hr>
       </div>
     </div>
@@ -26,7 +35,11 @@
 ">From : {{selectedMessage.sender}}</p>
       <hr>
       <p style="margin-left: 10px;
-       font-family: 'Lato Black',serif;
+       font-family: 'Lato',serif;
+">Time : {{selectedMessage.time}}</p>
+      <hr>
+      <p style="margin-left: 10px;
+       font-family: 'Lato',serif;
 ">Subject : {{selectedMessage.subject}}</p>
       <hr>
     </div>
