@@ -1,0 +1,39 @@
+<div class="header" fxLayoutAlign="row" fxLayoutGap="350px">
+  <div><p
+    style="margin-top: 15px;font-family: 'Roboto Medium',serif;margin-left:88px;font-style: normal; color: white;font-weight: bold; font-size: 37px">
+    Email Service</p></div>
+  <div>
+    <div fxFlex fxLayoutAlign="row" fxLayoutGap="1px" class="example-container">
+      <mat-form-field appearance="fill">
+        <mat-label>Email</mat-label>
+        <input [(ngModel)]="emailId" matInput placeholder="Enter your email">
+      </mat-form-field>
+
+      <mat-form-field appearance="fill">
+        <mat-label>Password</mat-label>
+        <input [(ngModel)]="password" matInput [type]="hide ? 'password' : 'text'" placeholder="Enter your password">
+      </mat-form-field>
+      <mat-form-field style="width: 90px" appearance="fill">
+        <mat-label>Duration</mat-label>
+        <input [(ngModel)]="duration" matInput placeholder="In Hrs.">
+      </mat-form-field>
+    </div>
+    <div class="submit">
+      <button style="margin-top: 7.5px;
+  width: 93px;
+  height: 44px;
+  margin-left: 16px;
+  background-color: aliceblue;cursor: pointer" mat-raised-button color="primary" (click)="mailCall()">Proceed
+      </button>
+    </div>
+  </div>
+</div>
+
+<!-------------------------------------------------------------------------------------------------->
+<div *ngIf="isLogin">
+  <router-outlet></router-outlet>
+</div>
+
+<div *ngIf="!isLogin">
+  <p style="font-family: 'Roboto Medium';color: lightgrey; font-size: 125px;text-align: center; margin-top: 250px">Waiting for Mails </p>
+</div>
