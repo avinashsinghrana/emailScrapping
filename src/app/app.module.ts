@@ -10,13 +10,14 @@ import {MatInputModule} from '@angular/material/input';
 import {FlexModule} from '@angular/flex-layout';
 import {FormsModule} from '@angular/forms';
 import { MailListComponent } from './components/mail-list/mail-list.component';
-import {MatCardModule} from "@angular/material/card";
+import {MatCardModule} from '@angular/material/card';
+import {MatMenuModule} from "@angular/material/menu";
 
 @NgModule({
   declarations: [
     AppComponent,
     DashboardComponent,
-    MailListComponent
+    MailListComponent,
   ],
   imports: [
     BrowserModule,
@@ -26,7 +27,8 @@ import {MatCardModule} from "@angular/material/card";
     MatIconModule,
     FlexModule,
     FormsModule,
-    MatCardModule
+    MatCardModule,
+    MatMenuModule
   ],
   providers: [],
   bootstrap: [AppComponent]

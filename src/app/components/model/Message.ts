@@ -1,6 +1,6 @@
 export interface  Message {
   sender: string;
   subject: string;
-  text: string;
+  bodyContent: string;
   time: string;
 }

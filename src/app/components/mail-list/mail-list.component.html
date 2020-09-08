@@ -6,20 +6,22 @@
     <div>
       <mat-card class="searchBar" fxLayoutAlign="row">
         <mat-icon matPrefix >search</mat-icon>
-        <input matInput type="text" placeholder="Search your mail..." aria-label="Search" >
+        <input matInput [(ngModel)]="searchTerm" (keyup.enter)="onEnter()" type="text" placeholder="Search your mail..." aria-label="Search" >
+        <div *ngIf="searchTerm.length > 0" (click)="clearMessage()"
+             style="margin-top: -10px;cursor: pointer;
+    margin-right: 0px;font-weight: bold;
+"><mat-icon matPrefix >clear</mat-icon></div>
       </mat-card>
     </div>
     <hr>
     <div style="overflow-y: scroll;
     width: 511px;
-    height: 497px;
-    margin-top: -8px">
-      <div *ngFor="let message of subject; let i = index">
-        <mat-card class="matcardsubject" style="
-       cursor: pointer;
-"
+    height: 487px;
+    margin-top: 0px">
+      <div *ngFor="let message of messages ; let i = index">
+        <mat-card class="matcardsubject" style="cursor: pointer;"
            (click)="selectMessage(i)">
-          <div class="input-price-span">{{message}}</div>
+          <div class="input-price-span" aria-hidden="false">{{message.subject}}</div>
         </mat-card>
         <hr>
       </div>
@@ -29,30 +31,27 @@
     <div class="subjectList">
       <p style="text-align-last: center; color: white">Message Body</p>
     </div>
-    <div *ngIf="selectedMessage.text !== undefined" class="subjectList1">
+    <div *ngIf="selectedMessage.bodyContent !== undefined" class="subjectList1">
       <p style="margin-left: 10px;
        font-family: 'Lato Black',serif;
 ">From : {{selectedMessage.sender}}</p>
       <hr>
       <p style="margin-left: 10px;
        font-family: 'Lato',serif;
-">Time : {{selectedMessage.time}}</p>
+">Date : {{selectedMessage.time}}</p>
       <hr>
       <p style="margin-left: 10px;
        font-family: 'Lato',serif;
 ">Subject : {{selectedMessage.subject}}</p>
       <hr>
     </div>
-    <div style="    overflow-y: scroll;
+    <div style="overflow-y: scroll;
     width: 100%;
-    height: 455px;
-    margin-top: -7px;
-}">
-      <p style="margin-left: 10px;
-       font-family: 'Lato';
-">
-        {{selectedMessage.text}}
-      </p>
+    height: 415px;
+    margin-top: -7px;">
+      <div style="margin-left: 10px;
+       font-family: 'Lato';white-space: pre-line;
+" >{{selectedMessage.bodyContent}}</div>
     </div>
   </div>
 </div>

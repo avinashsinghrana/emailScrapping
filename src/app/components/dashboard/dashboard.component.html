@@ -1,7 +1,14 @@
-<div class="header" fxLayoutAlign="row" fxLayoutGap="350px">
+<div class="header" fxLayoutAlign="row" fxLayoutGap="250px">
   <div><p
     style="margin-top: 15px;font-family: 'Roboto Medium',serif;margin-left:88px;font-style: normal; color: white;font-weight: bold; font-size: 37px">
-    Email Service</p></div>
+    Email Service</p>
+    <p style="font-family: 'Roboto';font-weight: lighter;color: white;font-size: x-small;
+    margin-left: 174px;
+    margin-top: -9px;">Developed by</p>
+    <p style="font-family: 'Roboto';font-weight: lighter;color: white;font-size: small;
+    margin-left: 235px;
+    margin-top: -33px;">Avinash Rana</p>
+  </div>
   <div>
     <div fxFlex fxLayoutAlign="row" fxLayoutGap="1px" class="example-container">
       <mat-form-field appearance="fill">
@@ -17,6 +24,11 @@
         <mat-label>Duration</mat-label>
         <input [(ngModel)]="duration" matInput placeholder="In Hrs.">
       </mat-form-field>
+      <mat-form-field (click)="changeType()" style="width: 90px; cursor: pointer" appearance="fill">
+        <mat-label>Message Type</mat-label>
+        <input style="cursor: pointer" matTooltip="click To Change" [(ngModel)]="messageType" matInput [disabled]="true">
+      </mat-form-field>
+
     </div>
     <div class="submit">
       <button style="margin-top: 7.5px;

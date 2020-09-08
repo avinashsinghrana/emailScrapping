@@ -13,6 +13,8 @@ export class DashboardComponent implements OnInit {
   password = 'Noreply@123';
   duration = 500;
   isLogin = false;
+  type = true;
+  messageType = 'Seen';
 
   constructor(
     private dataService: DataServiceService) {
@@ -26,7 +28,17 @@ export class DashboardComponent implements OnInit {
     login.user = this.emailId;
     login.password = this.password;
     login.hours = this.duration;
+    login.type = this.type;
     this.dataService.changeMail(login);
     this.isLogin = true;
+  }
+
+  changeType(): void {
+    this.type = !this.type;
+    if (this.type){
+      this.messageType = 'Seen';
+    }else {
+      this.messageType = 'Unseen';
+    }
   }
 }

@@ -10,10 +10,6 @@ export function mailService(url: string, bodyData: any): Observable<any>{
         headers: {
           'Content-Type': 'application/json',
           'Access-Control-Allow-Origin': '*',
-          // 'Content-Type': 'application/json',
-          // 'Access-Control-Allow-Origin': '*',
-          // 'Access-Control-Allow-Methods': 'POST, PUT',
-          // 'Access-Control-Allow-Headers': 'Content-Type , Authorization'
         }
       }
     )

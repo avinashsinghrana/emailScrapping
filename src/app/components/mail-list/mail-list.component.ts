@@ -4,6 +4,7 @@ import {DataServiceService} from '../../service/data-service.service';
 import {LoginModel} from '../model/LoginModel';
 import {mailService} from '../../service/Service';
 import {Observable} from 'rxjs';
+import {mailSorting} from '../../service/MailSort';
 
 @Component({
   selector: 'app-mail-list',
@@ -12,20 +13,19 @@ import {Observable} from 'rxjs';
 })
 export class MailListComponent implements OnInit {
   selectedMessage: Message;
+  backupMessage: Message[];
   messages = [];
-  subject = [];
   res$: Observable<any>;
-  constructor(private dataService: DataServiceService,
-              ) {
+  searchTerm = '';
 
+  constructor(private dataService: DataServiceService,
+  ) {
   }
 
   ngOnInit(): void {
     console.log(this.messages);
     this.dataService.changeMailObserver$.subscribe(response => {
-      const loginData = response;
-      console.log('mail ngcall from data source', loginData);
-      this.getMails(loginData);
+      this.getMails(response);
     });
   }
 
@@ -37,16 +37,35 @@ export class MailListComponent implements OnInit {
   getMails(login: LoginModel): void {
     this.res$ = mailService('http://localhost:8080/e/req_id', login);
     this.res$.subscribe(res => {
-        const currentMessage: Message[] = res.object;
-        this.assign(currentMessage);
-      });
+      const currentMessage: Message[] = res.object;
+      this.assign(currentMessage);
+    });
   }
 
-  assign(messages): void {
-    this.subject = [];
-    this.messages = messages;
-    messages.forEach(messageData => {
-      this.subject.push(messageData.subject);
-    });
+  assign(message): void {
+    this.messages = message;
+    this.duplicate(message);
+  }
+
+  onEnter(): void {
+    this.messages = [];
+    this.messages = this.backupMessage;
+    const currentMessage: Message[] = mailSorting(this.messages, this.searchTerm);
+    this.assignMessageAfterSearch(currentMessage);
+  }
+
+  clearMessage(): void {
+    this.searchTerm = '';
+    this.messages = [];
+    this.messages = this.backupMessage;
+  }
+
+  assignMessageAfterSearch(currentMessage: Message[]): void {
+    this.messages = [];
+    this.messages = currentMessage;
+  }
+
+  duplicate(message: any): void {
+    this.backupMessage = message;
   }
 }
