@@ -94,7 +94,13 @@
   width: 37%;
 
 }
-
+.mat-progress-spinner circle, .mat-spinner circle {
+  stroke: deepskyblue;
+  color: deepskyblue;
+}
+.mat-spinner{
+  stroke: deepskyblue;
+}
 .searchBar {
   height: 4px;
   width: 495px;
@@ -128,7 +134,7 @@ margin-top: -7px;
   border-radius: -63;
   margin-bottom: -5px;
   height: 0px;
-  margin-top: -10px;
+  margin-top: -8px;
   border-radius: inherit;
 
 }

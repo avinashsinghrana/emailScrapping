@@ -8,16 +8,21 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import {MatIconModule} from '@angular/material/icon';
 import {MatInputModule} from '@angular/material/input';
 import {FlexModule} from '@angular/flex-layout';
-import {FormsModule} from '@angular/forms';
+import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import { MailListComponent } from './components/mail-list/mail-list.component';
 import {MatCardModule} from '@angular/material/card';
-import {MatMenuModule} from "@angular/material/menu";
+import {MatMenuModule} from '@angular/material/menu';
+import {MatProgressSpinnerModule} from '@angular/material/progress-spinner';
+import { LinkIdentifierPipe } from './components/mail-list/link-identifier.pipe';
+import { LoginpageComponent } from './components/loginpage/loginpage.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     DashboardComponent,
     MailListComponent,
+    LinkIdentifierPipe,
+    LoginpageComponent,
   ],
   imports: [
     BrowserModule,
@@ -28,7 +33,9 @@ import {MatMenuModule} from "@angular/material/menu";
     FlexModule,
     FormsModule,
     MatCardModule,
-    MatMenuModule
+    MatMenuModule,
+    MatProgressSpinnerModule,
+    ReactiveFormsModule
   ],
   providers: [],
   bootstrap: [AppComponent]

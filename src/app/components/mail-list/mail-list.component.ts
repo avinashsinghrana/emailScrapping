@@ -17,26 +17,31 @@ export class MailListComponent implements OnInit {
   messages = [];
   res$: Observable<any>;
   searchTerm = '';
+  selectedSubject = -1;
+  status = 111;
 
   constructor(private dataService: DataServiceService,
   ) {
   }
 
   ngOnInit(): void {
-    console.log(this.messages);
     this.dataService.changeMailObserver$.subscribe(response => {
+      this.status = 111;
       this.getMails(response);
     });
   }
 
   selectMessage(i: number): void {
-    this.selectedMessage = null;
+    this.selectedSubject = i;
     this.selectedMessage = this.messages[i];
+    this.dataService.passLink(this.selectedMessage.bodyContent);
   }
 
   getMails(login: LoginModel): void {
     this.res$ = mailService('http://localhost:8080/e/req_id', login);
     this.res$.subscribe(res => {
+      this.status = res.statusCode;
+      this.selectedSubject = -1;
       const currentMessage: Message[] = res.object;
       this.assign(currentMessage);
     });
@@ -49,6 +54,8 @@ export class MailListComponent implements OnInit {
 
   onEnter(): void {
     this.messages = [];
+    this.selectedSubject = -1;
+    this.selectedMessage = undefined;
     this.messages = this.backupMessage;
     const currentMessage: Message[] = mailSorting(this.messages, this.searchTerm);
     this.assignMessageAfterSearch(currentMessage);
@@ -57,6 +64,8 @@ export class MailListComponent implements OnInit {
   clearMessage(): void {
     this.searchTerm = '';
     this.messages = [];
+    this.selectedSubject = -1;
+    this.selectedMessage = undefined;
     this.messages = this.backupMessage;
   }
 
@@ -67,5 +76,22 @@ export class MailListComponent implements OnInit {
 
   duplicate(message: any): void {
     this.backupMessage = message;
+  }
+
+  checkSelection(i: number): any {
+    if (this.selectedSubject === i) {
+      return {
+        'background-color': 'lightgrey',
+      };
+    }
+  }
+
+  sreachBlank(event): void {
+    if (this.searchTerm === '') {
+      this.messages = [];
+      this.selectedSubject = -1;
+      this.selectedMessage = undefined;
+      this.messages = this.backupMessage;
+    }
   }
 }

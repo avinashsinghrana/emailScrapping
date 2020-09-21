@@ -9,8 +9,10 @@ import {DataServiceService} from '../../service/data-service.service';
 })
 export class DashboardComponent implements OnInit {
   hide = true;
-  emailId = 'noreplytokenid@gmail.com';
-  password = 'Noreply@123';
+  // emailId = 'noreplytokenid@gmail.com';
+  // password = 'Noreply@123';
+  emailId = 'avinashrana45@gmail.com';
+  password = 'Avinash#8956';
   duration = 500;
   isLogin = false;
   type = true;

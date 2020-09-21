@@ -2,6 +2,7 @@ import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 import {DashboardComponent} from './components/dashboard/dashboard.component';
 import {MailListComponent} from './components/mail-list/mail-list.component';
+import {LoginpageComponent} from './components/loginpage/loginpage.component';
 
 const routes: Routes = [
   {
@@ -14,7 +15,11 @@ const routes: Routes = [
       {
         path: 'mail' , component: MailListComponent,
       },
+
     ],
+  },
+  {
+    path: 'auth' , component: LoginpageComponent,
   },
 ];
 
